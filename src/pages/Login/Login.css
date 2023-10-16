@@ -1,0 +1,18 @@
+.login-sector {
+    width: 630px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login-sector .inputbox input {
+    width: 100%;
+    margin-bottom: 33px;
+    display: flex;
+    padding: 12px 49px;
+    align-items: flex-start;
+    gap: 10px;
+    color: #A2A2A2;
+    font-size: 30px;
+}
