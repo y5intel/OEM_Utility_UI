@@ -23,8 +23,10 @@ To view the project's design, you can visit the Figma link [here](https://www.fi
 ### Development
 
 To run the project in development mode with hot module replacement (HMR), use the following command:
+
 ```bash
 npm run dev
+```
 
 ### Building
 
@@ -32,6 +34,6 @@ To build the project for production, use the following command:
 
 ```bash
 npm run build
+```
 
 You can find the build files in the /dist folder.
-```
