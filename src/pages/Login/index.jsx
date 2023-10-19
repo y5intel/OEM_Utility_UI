@@ -12,10 +12,10 @@ const LoginPage = () => {
                 <div className="login-sector position-center">
                     <div
                         className="text text-center"
-                        style={{ marginBottom: "33px" }}
+                        style={{ marginBottom: "22px" }}
                     >
-                        <h2 style={{ fontSize: "40px" }}>Log in</h2>
-                        <p style={{ fontSize: "25px" }}>
+                        <h2 style={{ fontSize: "27px" }}>Log in</h2>
+                        <p style={{ fontSize: "17px" }}>
                             Log into your admin account
                         </p>
                     </div>

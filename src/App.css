@@ -3,18 +3,18 @@ p {
 }
 
 .custom-container {
-  width: 1440px !important;
-  height: 900px !important;
+  width: 1080px !important;
+  height: 720px !important;
   margin-left: auto;
   margin-right: auto;
 }
 
 .logobar {
-  height: 87px;
+  height: 58px;
   color: #000;
   background-color: #D9D9D9;   
-  padding: 0px 27.5px;
-  font-size: 40px;
+  padding: 0px 17px;
+  font-size: 22px;
   font-weight: 400;
 }
 
@@ -29,8 +29,8 @@ p {
 }
 
 .btn-custom {
-  padding: 12px 49px;
-  font-size: 40px;
+  padding: 8px 29px;
+  font-size: 22px;
 }
 
 .btn-custom-default {
@@ -44,4 +44,9 @@ p {
   color: #FFF;
   background: #D9D9D9;
   border: 1px solid transparent;
+}
+
+.btn-no-style {
+  border: none;
+  background: transparent;
 }
