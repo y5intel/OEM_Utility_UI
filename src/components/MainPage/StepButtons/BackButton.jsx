@@ -1,4 +1,9 @@
+import { useDispatch } from "react-redux";
+import { decrementStepCount } from "../../../features/stepCounterSlice";
+
 const BackButton = () => {
+    const dispatch = useDispatch();
+
     return (
         <button
             style={{
@@ -10,6 +15,7 @@ const BackButton = () => {
                 fontSize: "20px",
                 fontWeight: "600",
             }}
+            onClick={() => dispatch(decrementStepCount())}
         >
             Back
         </button>

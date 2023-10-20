@@ -1,9 +1,9 @@
 import Loader from "react-spinner-loader";
 
-const LoadingSpinner = ({ isDownloading }) => {
+const LoadingSpinner = ({ isDownloaded }) => {
     return (
         <Loader
-            show={isDownloading}
+            show={isDownloaded}
             type="inline"
             stack="vertical"
             message="Loading Description"

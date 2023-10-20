@@ -1,7 +1,6 @@
 import LogoBar from "../../LogoBar";
 import StepElement from "./StepElement";
 
-import CheckedImage from "../../../assets/Subtract.png";
 import MasterWalletImage from "../../../assets/masterWallet.png";
 import SmartContractImage from "../../../assets/Rectangle.png";
 import SmartContractImage2 from "../../../assets/Rectangle2.png";
@@ -15,7 +14,7 @@ import LablesImage from "../../../assets/Ticket_alt.png";
 import LablesImage2 from "../../../assets/Ticket_alt2.png";
 
 const stepContents = [
-    { title: "Master Wallet", imgSrc1: MasterWalletImage },
+    { title: "Master Wallet", imgSrc2: MasterWalletImage },
     {
         title: "Smart Contract",
         imgSrc1: SmartContractImage,

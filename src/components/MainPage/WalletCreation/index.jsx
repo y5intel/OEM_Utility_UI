@@ -112,9 +112,18 @@ const WalletCreationStep = () => {
                 <div className="btn-block">
                     <BackButton />
                     {walletNumber < 10 && (
-                        <NextButtonEnabled onClick={handleNextClick}>
+                        <button
+                            className="bg-blue-gradient"
+                            style={{
+                                width: "145px",
+                                height: "37px",
+                                fontSize: "20px",
+                                border: "1px solid #573CFA",
+                            }}
+                            onClick={handleNextClick}
+                        >
                             Next Wallet
-                        </NextButtonEnabled>
+                        </button>
                     )}
                     {walletNumber === 10 && (
                         <NextButtonEnabled>Proceed</NextButtonEnabled>

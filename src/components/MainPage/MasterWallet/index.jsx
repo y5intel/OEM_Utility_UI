@@ -1,12 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import CopyImage from "../../../assets/Copy_alt_light.png";
 import SolflareLogoImage from "../../../assets/Solflare-Logo-1.png";
 import RefreshImage from "../../../assets/Refresh_light.png";
-import NextButtonDisabled from "../StepButtons/NextButtonDisabled";
+// import NextButtonDisabled from "../StepButtons/NextButtonDisabled";
 import NextButtonEnabled from "../StepButtons/NextButtonEnabled";
-import BackButton from "../StepButtons/BackButton";
 import "./style.css";
 
 const MasterWalletStep = () => {
+    const navigate = useNavigate();
+    const handleBackButtonClick = () => navigate("/login");
+
     return (
         <div className="masterWallet">
             <div className="position-relative" style={{ height: "100%" }}>
@@ -69,7 +72,20 @@ const MasterWalletStep = () => {
                     </div>
                 </div>
                 <div className="btn-block">
-                    <BackButton />
+                    <button
+                        style={{
+                            width: "145px",
+                            height: "37px",
+                            border: "1px solid #A2A2A2",
+                            background: "#FFF",
+                            color: "#A2A2A2",
+                            fontSize: "20px",
+                            fontWeight: "600",
+                        }}
+                        onClick={handleBackButtonClick}
+                    >
+                        Back
+                    </button>
                     {/* <NextButtonDisabled>Continue</NextButtonDisabled> */}
                     <NextButtonEnabled>Continue</NextButtonEnabled>
                 </div>

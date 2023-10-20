@@ -44,6 +44,12 @@ p {
   border: 1px solid transparent;
 }
 
+.btn-custom-enabled {
+  color: #FFF;
+  background: linear-gradient(90deg, #573CFA 54.17%, #372794 100%);
+  border: 1px solid #573CFA;
+}
+
 .btn-no-style {
   border: none;
   background: transparent;

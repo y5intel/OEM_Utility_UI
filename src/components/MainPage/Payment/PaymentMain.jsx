@@ -54,9 +54,18 @@ const PaymentMain = ({ handleOpenModal }) => {
             <div className="btn-block">
                 <BackButton />
                 {/* <NextButtonDisabled>Proceed to Payment</NextButtonDisabled> */}
-                <NextButtonEnabled width="220px" onClick={handleOpenModal}>
+                <button
+                    className="bg-blue-gradient"
+                    style={{
+                        width: "220px",
+                        height: "37px",
+                        fontSize: "20px",
+                        border: "1px solid #573CFA",
+                    }}
+                    onClick={handleOpenModal}
+                >
                     Proceed to Payment
-                </NextButtonEnabled>
+                </button>
             </div>
         </>
     );

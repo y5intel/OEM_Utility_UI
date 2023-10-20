@@ -20,7 +20,7 @@
     border: 1px solid #A2A2A2;
 }
 
-.select-wallet-sector .walletblock:hover {
+.select-wallet-sector .walletblock.active {
     border: 2px solid #573CFA;
 }
 

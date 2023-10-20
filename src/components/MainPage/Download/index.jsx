@@ -3,6 +3,8 @@
 // https://codesandbox.io/s/react-loader-spinner-forked-gfd4no?file=/src/App.js
 
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setStepCount } from "../../../features/stepCounterSlice";
 
 import DownloadComplete from "./DownloadComplete";
 import LoadingSpinner from "../../LoadingSpinner";
@@ -10,13 +12,15 @@ import LoadingSpinner from "../../LoadingSpinner";
 import "./style.css";
 
 const DownloadStep = () => {
-    const [isDownloading, setIsDownloading] = useState(false);
+    const [isDownloaded, setIsDownloaded] = useState(false);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        // After 5 seconds, set isDownloading to true
+        // After 3 seconds, set isDownloading to true
         const timer = setTimeout(() => {
-            setIsDownloading(true);
-        }, 5000); // 5000 milliseconds = 5 seconds
+            setIsDownloaded(true);
+            dispatch(setStepCount(7));
+        }, 3000); // 3000 milliseconds = 3 seconds
 
         return () => {
             // Clean up the timer if the component unmounts before 5 seconds
@@ -26,10 +30,10 @@ const DownloadStep = () => {
 
     return (
         <div className="download position-relative">
-            {isDownloading ? (
+            {isDownloaded ? (
                 <DownloadComplete />
             ) : (
-                <LoadingSpinner isDownloading={true} />
+                <LoadingSpinner isDownloaded={true} />
             )}
         </div>
     );

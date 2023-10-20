@@ -7,6 +7,9 @@ import WalletCreationStep from "../../components/MainPage/WalletCreation";
 import LabelStep from "../../components/MainPage/Labels";
 import DownloadStep from "../../components/MainPage/Download";
 
+import { useSelector } from "react-redux";
+import { selectStepCount } from "../../features/stepCounterSlice";
+
 import "./MainPage.css";
 
 const stepComponents = [
@@ -17,12 +20,13 @@ const stepComponents = [
     <WalletCreationStep key="5" />,
     <LabelStep key="6" />,
     <DownloadStep key="7" />,
+    <DownloadStep key="8" />,
 ];
 
 function MainPage() {
-    const step = 6;
+    const stepCount = useSelector(selectStepCount);
 
-    return <MainPageContainer>{stepComponents[step]}</MainPageContainer>;
+    return <MainPageContainer>{stepComponents[stepCount]}</MainPageContainer>;
 }
 
 export default MainPage;

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import LogoBar from "../../components/LogoBar";
 import SelectWalletContainer from "./SelectWalletContainer";
@@ -8,15 +8,17 @@ import WalletConnect from "./WalletConnectButton";
 import "./WalletConnect.css";
 
 function WalletConnectionPage() {
-    const navigate = useNavigate();
-    const handleConnectClick = () => navigate("/main");
+    const [selectedWallet, setSelectedWallet] = useState("");
 
     return (
         <>
             <LogoBar />
             <SelectWalletContainer>
-                <WalletList />
-                <WalletConnect onClick={handleConnectClick} />
+                <WalletList
+                    selectedWallet={selectedWallet}
+                    setSelectedWallet={setSelectedWallet}
+                />
+                <WalletConnect selectedWallet={selectedWallet} />
             </SelectWalletContainer>
         </>
     );

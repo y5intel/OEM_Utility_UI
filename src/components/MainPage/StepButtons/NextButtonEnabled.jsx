@@ -1,4 +1,9 @@
-const NextButtonEnabled = ({ children, width, onClick }) => {
+import { useDispatch } from "react-redux";
+import { incrementStepCount } from "../../../features/stepCounterSlice";
+
+const NextButtonEnabled = ({ children, width }) => {
+    const dispatch = useDispatch();
+
     return (
         <button
             className="bg-blue-gradient"
@@ -8,7 +13,7 @@ const NextButtonEnabled = ({ children, width, onClick }) => {
                 fontSize: "20px",
                 border: "1px solid #573CFA",
             }}
-            onClick={onClick}
+            onClick={() => dispatch(incrementStepCount())}
         >
             {children}
         </button>

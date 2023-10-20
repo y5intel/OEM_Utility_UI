@@ -37,14 +37,28 @@
     border-right: 4px solid transparent;
 }
 
-.stepElement:hover .stepElement-body {
-    background: linear-gradient(90deg, #372794 0.95%, #573CFA 99.97%);
-    color: #FFF;
-    border-color: #573CFA;
+.stepElement.visited .stepElement-body {
+    background-color: #FFF;
+    color: #A2A2A2;
 }
 
-.stepElement span {
-    margin-right: 17px;
+.stepElement.visited .stepElement-body img {
+    width: 30px !important;
+}
+
+.stepElement.visited .stepElement-body, .stepElement.visited .stepElement-bottom {
+    border-right-color: #573CFA;
+}
+
+.stepElement.visited:last-child .stepElement-bottom {
+    border-right-color: transparent;
+}
+
+.stepElement.active .stepElement-body {
+    background: linear-gradient(90deg, #372794 1.75%, #573CFA 99.97%);
+    border-right-color: #573CFA;
+    color: #FFF;
+    font-weight: 900;
 }
 
 .stepElement .step-image {
