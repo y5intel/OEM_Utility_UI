@@ -35,8 +35,6 @@ p {
 
 .btn-custom-default {
   width: 100%;
-  color: #FDFDFD;
-  background: linear-gradient(90deg, #573CFA 54.17%, #372794 100%);
   border: 1px solid transparent;
 }
 
@@ -49,4 +47,9 @@ p {
 .btn-no-style {
   border: none;
   background: transparent;
+}
+
+.bg-blue-gradient {
+  background: linear-gradient(90deg, #573CFA 54.17%, #372794 100%);
+  color: #FDFDFD;
 }

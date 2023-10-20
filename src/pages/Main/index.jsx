@@ -5,6 +5,7 @@ import ProjectCostStep from "../../components/MainPage/ProjectCost";
 import SmartContractStep from "../../components/MainPage/SmartContract";
 import WalletCreationStep from "../../components/MainPage/WalletCreation";
 import LabelStep from "../../components/MainPage/Labels";
+import DownloadStep from "../../components/MainPage/Download";
 
 import "./MainPage.css";
 
@@ -15,10 +16,11 @@ const stepComponents = [
     <PaymentStep key="4" />,
     <WalletCreationStep key="5" />,
     <LabelStep key="6" />,
+    <DownloadStep key="7" />,
 ];
 
 function MainPage() {
-    const step = 1;
+    const step = 6;
 
     return <MainPageContainer>{stepComponents[step]}</MainPageContainer>;
 }

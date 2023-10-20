@@ -4,10 +4,11 @@ import RefreshImage from "../../../assets/Refresh_light.png";
 import NextButtonDisabled from "../StepButtons/NextButtonDisabled";
 import NextButtonEnabled from "../StepButtons/NextButtonEnabled";
 import BackButton from "../StepButtons/BackButton";
+import "./style.css";
 
 const MasterWalletStep = () => {
     return (
-        <div className="masterWallet" style={{ height: "100%" }}>
+        <div className="masterWallet">
             <div className="position-relative" style={{ height: "100%" }}>
                 <div className="block">
                     <div className="title">
@@ -23,10 +24,13 @@ const MasterWalletStep = () => {
                         </button>
                     </div>
                     <div className="content d-flex justify-content-between align-items-center">
-                        <div className="d-flex align-items-center">
+                        <div
+                            className="d-flex align-items-center"
+                            style={{ padding: "10px 10px 10px 27px" }}
+                        >
                             <span
                                 style={{
-                                    margin: "0px 12px 0px 19px",
+                                    marginRight: "12px",
                                     fontSize: "20px",
                                 }}
                             >
@@ -45,20 +49,20 @@ const MasterWalletStep = () => {
                     <div className="title">
                         <span>Contents</span>
                     </div>
-                    <div className="content">
+                    <div className="content" style={{ padding: "0px 18px" }}>
                         <div
                             className="d-flex"
                             style={{
                                 borderBottom: "1px solid #000",
                                 color: "#573CFA",
                                 fontWeight: "500",
-                                paddingBottom: "10px",
+                                padding: "10px",
                             }}
                         >
                             <div>Name</div>
                             <div>Amount</div>
                         </div>
-                        <div className="d-flex" style={{ paddingTop: "10px" }}>
+                        <div className="d-flex" style={{ padding: "10px" }}>
                             <div>SOL</div>
                             <div>1,000,000.0000</div>
                         </div>

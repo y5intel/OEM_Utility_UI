@@ -24,7 +24,7 @@ const LoginPage = () => {
                         <input type="password" placeholder="Password" />
                     </div>
                     <button
-                        className="btn-custom btn-custom-default"
+                        className="btn-custom btn-custom-default bg-blue-gradient"
                         onClick={() => navigate("/wallet-connect")}
                     >
                         Log in

@@ -1,15 +1,14 @@
-const NextButtonEnabled = ({ children }) => {
+const NextButtonEnabled = ({ children, width, onClick }) => {
     return (
         <button
+            className="bg-blue-gradient"
             style={{
-                width: "145px",
+                width: width || "145px",
                 height: "37px",
                 fontSize: "20px",
-                color: "#FFF",
-                background:
-                    "linear-gradient(90deg, #573CFA 54.17%, #372794 100%)",
                 border: "1px solid #573CFA",
             }}
+            onClick={onClick}
         >
             {children}
         </button>

@@ -1,0 +1,29 @@
+.mainPage .payment {
+    padding: 52px 62px 61px 62px;
+    height: 680px;
+}
+
+.mainPage .payment .block {
+    margin-bottom: 40px;
+    font-size: 20px;
+}
+
+.mainPage .payment .block .title {
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.mainPage .payment .block .details {
+    border: 1px solid #000;
+    padding: 0px 18px;
+}
+
+.mainPage .payment .block .details>div {
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+}
+
+.mainPage .payment .block .details>div div:first-child {
+    width: 195px;
+}

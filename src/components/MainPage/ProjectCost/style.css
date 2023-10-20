@@ -1,0 +1,39 @@
+.mainPage .projectCost {
+    padding: 77px 60px 63px 60px;
+    height: 680px;
+}
+
+.mainPage .projectCost .cost-area>div, .mainPage .projectCost .balance-area>div {
+    display: flex;
+    padding: 10px 26px;
+    font-size: 20px;
+    align-items: center;
+}
+
+.mainPage .projectCost .cost-area>div>div, .mainPage .projectCost .balance-area>div>div {
+    width: 50%;
+}
+
+.mainPage .projectCost .balance-area {
+    border: 2px solid #573CFA;
+}
+
+.mainPage .projectCost .balance-area>div {
+    font-weight: 700;
+}
+
+.mainPage .projectCost .warn-block {
+    margin-top: 40px;
+}
+
+.mainPage .projectCost .warn-block>div {
+    padding: 10px 11px;
+    font-size: 20px;
+    background: #E70936;
+    color: #FFF;
+}
+
+.mainPage .projectCost .warn-block img {
+    width: 24px;
+    margin-right: 7px;
+}
