@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Select from "react-select";
 import NextButtonEnabled from "../StepButtons/NextButtonEnabled";
+import NextButtonDisabled from "../StepButtons/NextButtonDisabled";
 import BackButton from "../StepButtons/BackButton";
 import InfoImage from "../../../assets/Info.png";
 import "./style.css";
@@ -99,16 +100,22 @@ const SmartContractStep = () => {
                         </div>
                     </div>
                 </div>
-                <div className="warn-block d-flex justify-content-center">
-                    <div className="d-flex align-items-center">
-                        <img src={InfoImage} alt="Info" /> Please select Smart
-                        Contract
+                {!selectedOption && (
+                    <div className="warn-block d-flex justify-content-center">
+                        <div className="d-flex align-items-center">
+                            <img src={InfoImage} alt="Info" /> Please select
+                            Smart Contract
+                        </div>
                     </div>
-                </div>
+                )}
+
                 <div className="btn-block">
                     <BackButton />
-                    {/* <NextButtonDisabled>Continue</NextButtonDisabled> */}
-                    <NextButtonEnabled>Proceed</NextButtonEnabled>
+                    {selectedOption ? (
+                        <NextButtonEnabled>Proceed</NextButtonEnabled>
+                    ) : (
+                        <NextButtonDisabled>Continue</NextButtonDisabled>
+                    )}
                 </div>
             </div>
         </div>

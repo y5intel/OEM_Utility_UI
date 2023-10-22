@@ -1,7 +1,12 @@
+import { useSelector } from "react-redux";
+import { selectWalletState } from "../../../features/walletItemSlice";
+
 import NextButtonEnabled from "../StepButtons/NextButtonEnabled";
 import BackButton from "../StepButtons/BackButton";
 
 const PaymentMain = ({ handleOpenModal }) => {
+    const walletState = useSelector(selectWalletState);
+
     return (
         <>
             <div>
@@ -10,7 +15,7 @@ const PaymentMain = ({ handleOpenModal }) => {
                     <div className="details">
                         <div>
                             <div>Number of Wallets</div>
-                            <div>10</div>
+                            <div>{walletState.count}</div>
                         </div>
                         <div>
                             <div>Cost Factor</div>
@@ -25,7 +30,15 @@ const PaymentMain = ({ handleOpenModal }) => {
                 <div className="block">
                     <div className="title">
                         Wallet Creation Contents
-                        <span>this will be what is in the wallets</span>
+                        <span
+                            style={{
+                                fontWeight: "400",
+                                fontSize: "0.8em",
+                            }}
+                        >
+                            {" "}
+                            (this will be what is in the wallets)
+                        </span>
                     </div>
                     <div className="details">
                         <div>

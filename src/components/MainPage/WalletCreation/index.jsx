@@ -1,3 +1,7 @@
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { selectWalletState } from "../../../features/walletItemSlice";
+
 import WalletCreationLabel from "../../WalletCreationLabel";
 import NextButtonEnabled from "../StepButtons/NextButtonEnabled";
 import BackButton from "../StepButtons/BackButton";
@@ -8,8 +12,14 @@ import { useState } from "react";
 const WalletCreationStep = () => {
     const [walletNumber, setWalletNumber] = useState(1);
 
+    const totalWalletCount = useSelector(selectWalletState).count;
+
     const handleNextClick = () =>
-        setWalletNumber(walletNumber === 10 ? walletNumber : walletNumber + 1);
+        setWalletNumber(
+            walletNumber === totalWalletCount
+                ? totalWalletCount
+                : walletNumber + 1
+        );
 
     return (
         <div className="walletCreation">
@@ -25,7 +35,7 @@ const WalletCreationStep = () => {
                             >
                                 Wallet {walletNumber}
                             </span>{" "}
-                            of 10
+                            of {totalWalletCount}
                         </div>
                         <div style={{ marginBottom: "18px" }}>
                             <div className="d-flex justify-content-between">
@@ -34,6 +44,7 @@ const WalletCreationStep = () => {
                                     <img
                                         src={CopyImage}
                                         style={{ width: "30px" }}
+                                        alt="Copy"
                                     />
                                 </button>
                             </div>
@@ -111,7 +122,7 @@ const WalletCreationStep = () => {
                 </div>
                 <div className="btn-block">
                     <BackButton />
-                    {walletNumber < 10 && (
+                    {walletNumber < totalWalletCount ? (
                         <button
                             className="bg-blue-gradient"
                             style={{
@@ -124,8 +135,7 @@ const WalletCreationStep = () => {
                         >
                             Next Wallet
                         </button>
-                    )}
-                    {walletNumber === 10 && (
+                    ) : (
                         <NextButtonEnabled>Proceed</NextButtonEnabled>
                     )}
                 </div>

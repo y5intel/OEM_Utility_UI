@@ -1,8 +1,14 @@
 import { useDispatch } from "react-redux";
 import { incrementStepCount } from "../../../features/stepCounterSlice";
 
-const NextButtonEnabled = ({ children, width }) => {
+const NextButtonEnabled = ({ children, width, onClick }) => {
     const dispatch = useDispatch();
+    const handleClick = () => {
+        if (onClick) {
+            onClick();
+        }
+        dispatch(incrementStepCount());
+    };
 
     return (
         <button
@@ -13,7 +19,7 @@ const NextButtonEnabled = ({ children, width }) => {
                 fontSize: "20px",
                 border: "1px solid #573CFA",
             }}
-            onClick={() => dispatch(incrementStepCount())}
+            onClick={handleClick}
         >
             {children}
         </button>

@@ -1,8 +1,8 @@
-const NextButtonDisabled = ({ children }) => {
+const NextButtonDisabled = ({ children, width }) => {
     return (
         <button
             style={{
-                width: "145px",
+                width: width || "145px",
                 height: "37px",
                 fontSize: "20px",
                 color: "#FFF",

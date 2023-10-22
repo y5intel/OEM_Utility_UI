@@ -1,9 +1,22 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setWalletCount } from "../../../features/walletItemSlice";
+import { isPositiveInteger } from "../../../apis/globalApi";
+
 import NextButtonEnabled from "../StepButtons/NextButtonEnabled";
+import NextButtonDisabled from "../StepButtons/NextButtonDisabled";
 import BackButton from "../StepButtons/BackButton";
-import InfoImage from "../../../assets/Info.png";
+import WarningSector from "../../WarningSector";
 import "./style.css";
 
 const ProjectCostStep = () => {
+    const [amount, setAmount] = useState("");
+    const [isBalanceEnough, setIsBalanceEnough] = useState(false);
+    const dispatch = useDispatch();
+    const handleNextClick = () => {
+        dispatch(setWalletCount(amount));
+    };
+
     return (
         <div className="projectCost">
             <div className="position-relative" style={{ height: "100%" }}>
@@ -16,6 +29,8 @@ const ProjectCostStep = () => {
                         <input
                             placeholder="insert amount"
                             style={{ padding: "5px 36px", width: "200px" }}
+                            onChange={(e) => setAmount(e.target.value)}
+                            value={amount}
                         ></input>
                     </div>
                     <div className="cost-area" style={{ padding: "26px 0px" }}>
@@ -28,7 +43,14 @@ const ProjectCostStep = () => {
                             <div>0</div>
                         </div>
                     </div>
-                    <div className="balance-area">
+                    <div
+                        className={`balance-area ${
+                            // isBalanceEnough ? "sufficient" : "insufficient"
+                            isPositiveInteger(amount)
+                                ? "sufficient"
+                                : "insufficient"
+                        }`}
+                    >
                         <div>
                             <div>Solflare Balance</div>
                             <div>
@@ -36,32 +58,41 @@ const ProjectCostStep = () => {
                                 <span>1,000,000.0000</span>
                             </div>
                         </div>
-                        <div
-                            className="d-flex justify-content-center bg-blue-gradient"
-                            style={{
-                                padding: "3px",
-                                fontSize: "14px",
-                                fontWeight: "500",
-                            }}
-                        >
-                            Sufficient Balance
-                        </div>
+                        {/* {isBalanceEnough ? ( */}
+                        {isPositiveInteger(amount) ? (
+                            <div className="status-area">
+                                Sufficient Balance
+                            </div>
+                        ) : (
+                            <div className="status-area">
+                                Insufficient Balance
+                            </div>
+                        )}
                     </div>
                 </div>
 
-                <div className="warn-block d-flex justify-content-center">
-                    <div className="d-flex align-items-center">
-                        <img src={InfoImage} alt="Info" />{" "}
-                        <span>You don't have enough balance</span>
-                    </div>
-                </div>
+                {!isPositiveInteger(amount) && (
+                    <WarningSector text="Please insert number of wallets" />
+                )}
+                {/* {isPositiveInteger(amount) && !isBalanceEnough && (
+                    <WarningSector text="You don't have enough balance" />
+                )} */}
 
                 <div className="btn-block">
                     <BackButton />
-                    {/* <NextButtonDisabled>Check Summary</NextButtonDisabled> */}
-                    <NextButtonEnabled width="180px">
-                        Check Summary
-                    </NextButtonEnabled>
+                    {/* {isPositiveInteger(amount) && isBalanceEnough ? ( */}
+                    {isPositiveInteger(amount) ? (
+                        <NextButtonEnabled
+                            width="180px"
+                            onClick={handleNextClick}
+                        >
+                            Check Summary
+                        </NextButtonEnabled>
+                    ) : (
+                        <NextButtonDisabled width="180px">
+                            Check Summary
+                        </NextButtonDisabled>
+                    )}
                 </div>
             </div>
         </div>

@@ -5,9 +5,11 @@ import { persistReducer } from "redux-persist";
 import thunk from "redux-thunk";
 
 import stepCounterReducer from "../features/stepCounterSlice";
+import walletItemsReducer from "../features/walletItemSlice";
 
 const reducers = combineReducers({
     stepCounter: stepCounterReducer,
+    walletItems: walletItemsReducer,
 });
 
 const persistConfig = {

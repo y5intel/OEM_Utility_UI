@@ -1,8 +1,13 @@
 import { useDispatch } from "react-redux";
 import { setStepCount } from "../../../features/stepCounterSlice";
+import { initializeWallets } from "../../../features/walletItemSlice";
 
 const DownloadComplete = () => {
     const dispatch = useDispatch();
+    const handleCreateBatch = () => {
+        dispatch(initializeWallets());
+        dispatch(setStepCount(2));
+    };
 
     return (
         <>
@@ -18,7 +23,7 @@ const DownloadComplete = () => {
                     fontSize: "20px",
                     border: "1px solid #573CFA",
                 }}
-                onClick={() => dispatch(setStepCount(4))}
+                onClick={handleCreateBatch}
             >
                 Create another batch of wallets
             </button>
