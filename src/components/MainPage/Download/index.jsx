@@ -4,7 +4,7 @@
 
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setStepCount } from "../../../features/stepCounterSlice";
+import { incrementStepCount } from "../../../features/stepCounterSlice";
 
 import DownloadComplete from "./DownloadComplete";
 import LoadingSpinner from "../../LoadingSpinner";
@@ -19,7 +19,7 @@ const DownloadStep = () => {
         // After 3 seconds, set isDownloading to true
         const timer = setTimeout(() => {
             setIsDownloaded(true);
-            dispatch(setStepCount(7));
+            dispatch(incrementStepCount());
         }, 3000); // 3000 milliseconds = 3 seconds
 
         return () => {

@@ -20,13 +20,16 @@ const stepComponents = [
     <WalletCreationStep key="5" />,
     <LabelStep key="6" />,
     <DownloadStep key="7" />,
-    <DownloadStep key="8" />,
 ];
 
 function MainPage() {
     const stepCount = useSelector(selectStepCount);
 
-    return <MainPageContainer>{stepComponents[stepCount]}</MainPageContainer>;
+    return (
+        <MainPageContainer>
+            {stepCount > 5 ? <DownloadStep /> : stepComponents[stepCount]}
+        </MainPageContainer>
+    );
 }
 
 export default MainPage;
