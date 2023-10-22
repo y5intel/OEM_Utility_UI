@@ -3,6 +3,7 @@ import {
     Route,
     Routes,
     Navigate,
+    HashRouter,
 } from "react-router-dom";
 
 import LoginPage from "./pages//Login";
@@ -14,7 +15,7 @@ import "./App.css";
 function App() {
     return (
         <div className="custom-container position-relative">
-            <Router>
+            <HashRouter>
                 <Routes>
                     <Route exact path="/login" element={<LoginPage />} />
                     <Route
@@ -25,7 +26,7 @@ function App() {
                     <Route exact path="/main" element={<MainPage />} />
                     <Route path="/" element={<Navigate to="/login" />} />
                 </Routes>
-            </Router>
+            </HashRouter>
         </div>
     );
 }
