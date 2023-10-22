@@ -6,7 +6,7 @@ const DownloadComplete = () => {
     const dispatch = useDispatch();
     const handleCreateBatch = () => {
         dispatch(initializeWallets());
-        dispatch(setStepCount(2));
+        dispatch(setStepCount(0));
     };
 
     return (
