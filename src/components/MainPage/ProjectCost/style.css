@@ -1,0 +1,69 @@
+.mainPage .projectCost {
+    padding: 77px 60px 63px 60px;
+    height: 680px;
+}
+
+.mainPage .projectCost .cost-area>div, .mainPage .projectCost .balance-area>div {
+    display: flex;
+    padding: 10px 26px;
+    font-size: 20px;
+    align-items: center;
+}
+
+.mainPage .projectCost .cost-area>div>div, .mainPage .projectCost .balance-area>div>div {
+    width: 50%;
+}
+
+.mainPage .projectCost .balance-area .status-area {
+    display: flex;
+    justify-content: center;
+    padding: 3px;
+    font-size: 14px;
+    font-weight: 500;
+    border-style: solid;
+    border-width: 2px
+}
+
+.mainPage .projectCost .balance-area.sufficient {
+    border-color: #573CFA;
+}
+
+.mainPage .projectCost .balance-area.insufficient {
+    border-color: #E70936;
+}
+
+.mainPage .projectCost .balance-area.sufficient .status-area {
+    background: linear-gradient(90deg, #573CFA 51.05%, #372794 100%);
+}
+
+.mainPage .projectCost .balance-area.insufficient .status-area {
+    background: #E70936;
+}
+
+.mainPage .projectCost .balance-area>div {
+    font-weight: 700;
+}
+
+.mainPage .projectCost .balance-area .status-area {
+    color: #FFF;
+}
+
+.mainPage .projectCost .balance-area.sufficient {
+    
+}
+
+.mainPage .projectCost .warn-block {
+    margin-top: 40px;
+}
+
+.mainPage .projectCost .warn-block>div {
+    padding: 10px 11px;
+    font-size: 20px;
+    background: #E70936;
+    color: #FFF;
+}
+
+.mainPage .projectCost .warn-block img {
+    width: 24px;
+    margin-right: 7px;
+}

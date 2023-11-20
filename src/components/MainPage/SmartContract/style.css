@@ -1,0 +1,72 @@
+#react-select-3-listbox>div::-webkit-scrollbar {
+    background: #D9D9D9 !important;
+    border-radius: 12px;
+}
+
+#react-select-3-listbox>div::-webkit-scrollbar-track {
+    border-radius: 12px;
+    background: #D9D9D9;
+}
+
+#react-select-3-listbox>div::-webkit-scrollbar-thumb {
+    background: #573CFA !important;
+    border-radius: 12px;
+}
+
+#react-select-3-listbox>div::-webkit-scrollbar-thumb:hover {
+    background: blue !important;
+}
+
+.mainPage .smartContract {
+    padding: 55px 61px 63px 82px;
+    height: 680px;
+}
+
+.mainPage .smartContract .block {
+    margin-bottom: 36px;
+}
+
+.mainPage .smartContract .block .title {
+    padding: 0px 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mainPage .smartContract .block .content {
+    border: 1px solid #000;
+    padding: 0px 32px;
+}
+
+.mainPage .smartContract .block .content .d-flex {
+    padding: 10px;
+    font-size: 20px;
+    color: #000;
+}
+
+.mainPage .smartContract .block .content .d-flex .desc {
+    font-size: 16px !important;
+}
+
+.mainPage .smartContract .block .content .d-flex div {
+    width: 50%;
+}
+
+.mainPage .smartContract .warn-block {
+    margin-top: 50px;
+}
+
+.mainPage .smartContract .warn-block>div {
+    padding: 10px 11px;
+    background: #E70936;
+    font-size: 20px;
+    color: #FFF;
+}
+
+.mainPage .smartContract .warn-block img {
+    width: 24px;
+    margin-right: 7px;
+}

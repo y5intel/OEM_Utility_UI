@@ -1,0 +1,26 @@
+.mainPage .masterWallet {
+    padding: 97px 67px 63px 76px;
+    height: 680px;
+}
+
+.mainPage .masterWallet .block {
+    margin-bottom: 55px;
+}
+
+.mainPage .masterWallet .block .title {
+    padding: 0px 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mainPage .masterWallet .block .content {
+    border: 1px solid #000;
+}
+
+.mainPage .masterWallet .block .content .d-flex div {
+    width: 50%;
+}

@@ -1,0 +1,35 @@
+.select-wallet-main {
+    width: 580px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.select-wallet-sector {
+    width: 100%;
+    padding: 40px;
+    border: 1px solid #000;
+}
+
+.select-wallet-sector .walletblock {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 29px;
+    border: 1px solid #A2A2A2;
+}
+
+.select-wallet-sector .walletblock.active {
+    border: 2px solid #573CFA;
+}
+
+.select-wallet-sector .walletblock img {
+    width: 32px;
+    height: 32px;
+    margin-right: 9px;
+}
+
+.select-wallet-main button {
+    width: 180px !important;
+}

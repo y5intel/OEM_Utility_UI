@@ -1,0 +1,39 @@
+.mainPage .labels {
+    padding: 52px 45px 52px 54px;
+    height: 680px;
+}
+
+.mainPage .labels .title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.mainPage .labels .count {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.mainPage .labels .row {
+    margin: 0px !important;
+}
+
+.mainPage .labels .col-6 {
+    padding: 8px !important;
+}
+
+.mainPage .labels .pagination button {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: #573CFA;
+    padding: 0px;
+}
+
+.mainPage .labels .pagination button img {
+    width: 100%;
+}
+
+.mainPage .labels .btn-block {
+    justify-content: end !important;
+}

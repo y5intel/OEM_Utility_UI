@@ -1,0 +1,19 @@
+.mainPage .walletCreation {
+    padding: 66px 65px 32px 63px;
+    height: 680px;
+}
+
+.mainPage .walletCreation .title {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.mainPage .walletCreation .detail-line {
+    margin-top: 10px;
+    font-size: 14px;
+    display: flex;
+}
+
+.mainPage .walletCreation .detail-line>div {
+    width: 50%;
+}
