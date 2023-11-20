@@ -1,5 +1,4 @@
 import {
-  BrowserRouter as Router,
   Route,
   Routes,
   Navigate,
@@ -17,7 +16,6 @@ import { clusterApiUrl } from "@solana/web3.js";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import {
   PhantomWalletAdapter,
-  SolflareWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
 import {
   ConnectionProvider,
@@ -35,7 +33,6 @@ function App() {
   const wallets = useMemo(
     () => [
       new PhantomWalletAdapter(),
-      new SolflareWalletAdapter({ solNetwork }),
     ],
     [solNetwork]
   );
@@ -46,13 +43,12 @@ function App() {
           <div className="custom-container position-relative">
             <HashRouter>
               <Routes>
-                <Route exact path="/login" element={<LoginPage />} />
+                <Route path="/login" element={<LoginPage />} />
                 <Route
-                  exact
                   path="/wallet-connect"
                   element={<WalletConnectPage />}
                 />
-                <Route exact path="/main" element={<MainPage />} />
+                <Route path="/main" element={<MainPage />} />
                 <Route path="/" element={<Navigate to="/login" />} />
               </Routes>
             </HashRouter>
