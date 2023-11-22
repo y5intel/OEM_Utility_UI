@@ -1,34 +1,44 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import CopyImage from "../../../assets/Copy_alt_light.png";
-import SolflareLogoImage from "../../../assets/Solflare-Logo-1.png";
 import RefreshImage from "../../../assets/Refresh_light.png";
-import NextButtonDisabled from "../StepButtons/NextButtonDisabled";
 import NextButtonEnabled from "../StepButtons/NextButtonEnabled";
 import "./style.css";
+// import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+// import SolflareLogoImage from "../../../assets/Solflare-Logo-1.png";
+// import NextButtonDisabled from "../StepButtons/NextButtonDisabled";
 
 import {
     Connection,
     PublicKey,
     LAMPORTS_PER_SOL,
     clusterApiUrl,
+    GetProgramAccountsFilter,
 } from "@solana/web3.js";
-import { AccountLayout, TOKEN_PROGRAM_ID } from "@solana/spl-token";
+import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
+// import { AccountLayout, TOKEN_PROGRAM_ID } from "@solana/spl-token";
 
 // const solanaWeb3 = require("@solana/web3.js");
+interface MasterWalletStepProps {
+    // Define props if needed
+}
 
-const MasterWalletStep = () => {
+const MasterWalletStep: React.FC<MasterWalletStepProps> = () => {
     const { publicKey } = useWallet();
     const navigate = useNavigate();
     const handleBackButtonClick = () => navigate("/login");
-    const [balance, setBalance] = useState(0);
-    const [mintAddress, setMintAddress] = useState("");
-    const [tokenBalance, setTokenBalance] = useState("");
+    const [balance, setBalance] = useState<number>(0);
+    const [mintAddress, setMintAddress] = useState<string>("");
+    const [tokenBalance, setTokenBalance] = useState<string>("")
 
-    const SOLANA_CONNECTION = new Connection(clusterApiUrl("devnet"));
-    const WALLET_ADDRESS = publicKey?.toBase58();
+    // const SOLANA_CONNECTION = new Connection(clusterApiUrl("devnet"));
+    const WALLET_ADDRESS = useMemo(() => publicKey?.toBase58(), [publicKey]);
+
+    const SOLANA_CONNECTION = useMemo(
+        () => new Connection(clusterApiUrl("devnet")),
+        []
+    );
 
     // const getAccountInfo = async (address) => {
     //     console.log(new solanaWeb3.PublicKey(address));
@@ -49,19 +59,23 @@ const MasterWalletStep = () => {
     //             .catch((err) => console.error(err));
     // }, [WALLET_ADDRESS]);
 
-    const getTokenAccounts = async (wallet, SOLANA_CONNECTION) => {
-        const filters = [
+    const getTokenAccounts = async (
+        wallet: PublicKey | null,
+        connection: Connection
+    ) => {
+        if (!wallet) return;
+        const filters: GetProgramAccountsFilter[] = [
             {
                 dataSize: 165,
             },
             {
                 memcmp: {
                     offset: 32,
-                    bytes: wallet,
+                    bytes: wallet?.toBuffer()?.toString('base64') || '', // Convert Buffer to base64 string
                 },
             },
         ];
-        const accounts = await SOLANA_CONNECTION.getParsedProgramAccounts(
+        const accounts = await connection.getParsedProgramAccounts(
             TOKEN_PROGRAM_ID,
             { filters }
         );
@@ -85,7 +99,7 @@ const MasterWalletStep = () => {
 
     useEffect(() => {
         if (WALLET_ADDRESS) getTokenAccounts(publicKey, SOLANA_CONNECTION);
-    });
+    }, [WALLET_ADDRESS, publicKey, SOLANA_CONNECTION]);
 
     // useEffect(() => {
     //     if (WALLET_ADDRESS)
@@ -116,14 +130,15 @@ const MasterWalletStep = () => {
     // });
 
     useEffect(() => {
-        if (WALLET_ADDRESS)
+        if (WALLET_ADDRESS) {
             (async () => {
-                let balance = await SOLANA_CONNECTION.getBalance(
+                const balance = await SOLANA_CONNECTION.getBalance(
                     new PublicKey(WALLET_ADDRESS)
                 );
                 setBalance(balance / LAMPORTS_PER_SOL);
             })();
-    }, [WALLET_ADDRESS]);
+        }
+    }, [WALLET_ADDRESS, SOLANA_CONNECTION]);
 
     return (
         <div className="masterWallet">

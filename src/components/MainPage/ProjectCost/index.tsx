@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setWalletCount } from "../../../features/walletItemSlice";
 import { isPositiveInteger } from "../../../apis/globalApi";
@@ -9,10 +9,11 @@ import BackButton from "../StepButtons/BackButton";
 import WarningSector from "../../WarningSector";
 import "./style.css";
 
-const ProjectCostStep = () => {
-    const [amount, setAmount] = useState("");
-    const [isBalanceEnough, setIsBalanceEnough] = useState(false);
+const ProjectCostStep: React.FC = () => {
+    const [amount, setAmount] = useState<string>("");
+    // const [isBalanceEnough, setIsBalanceEnough] = useState(false);
     const dispatch = useDispatch();
+
     const handleNextClick = () => {
         dispatch(setWalletCount(amount));
     };

@@ -1,11 +1,19 @@
 import { useSelector } from "react-redux";
 import { selectWalletState } from "../../../features/walletItemSlice";
-
-import NextButtonEnabled from "../StepButtons/NextButtonEnabled";
 import BackButton from "../StepButtons/BackButton";
+import { FC } from "react";
 
-const PaymentMain = ({ handleOpenModal }) => {
-    const walletState = useSelector(selectWalletState);
+interface WalletState {
+    count: number;
+    // Define other properties here if needed
+}
+
+interface PaymentMainProps {
+    handleOpenModal: () => void;
+}
+
+const PaymentMain: FC<PaymentMainProps> = ({ handleOpenModal }) => {
+    const walletState = useSelector(selectWalletState) as WalletState;
 
     return (
         <>
@@ -66,7 +74,6 @@ const PaymentMain = ({ handleOpenModal }) => {
             </div>
             <div className="btn-block">
                 <BackButton />
-                {/* <NextButtonDisabled>Proceed to Payment</NextButtonDisabled> */}
                 <button
                     className="bg-blue-gradient"
                     style={{

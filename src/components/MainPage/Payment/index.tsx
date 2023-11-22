@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 import PaymentMain from "./PaymentMain";
 import PaymentSuccess from "./PaymentSuccess";
@@ -6,9 +6,9 @@ import TransactionFailed from "./TrasactionFailed";
 import PaymentModal from "../../PaymentModal";
 import "./style.css";
 
-const PaymentStep = () => {
-    const [isModalOpen, setModalOpen] = useState(false);
-    const [paymentStep, setPaymentStep] = useState(0);
+const PaymentStep: React.FC = () => {
+    const [isModalOpen, setModalOpen] = useState<boolean>(false);
+    const [paymentStep, setPaymentStep] = useState<number>(0);
 
     const handleOpenModal = () => {
         setModalOpen(!isModalOpen);

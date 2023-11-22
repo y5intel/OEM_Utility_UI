@@ -1,7 +1,8 @@
+import React from "react";
 import BackButton from "../StepButtons/BackButton";
 import NextButtonEnabled from "../StepButtons/NextButtonEnabled";
 
-const PaymentSuccess = () => {
+const PaymentSuccess: React.FC = () => {
     return (
         <div>
             <div

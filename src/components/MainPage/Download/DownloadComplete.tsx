@@ -1,8 +1,9 @@
 import { useDispatch } from "react-redux";
 import { setStepCount } from "../../../features/stepCounterSlice";
 import { initializeWallets } from "../../../features/walletItemSlice";
+import { FC } from "react"; // Import FC type from React
 
-const DownloadComplete = () => {
+const DownloadComplete: FC = () => {
     const dispatch = useDispatch();
     const handleCreateBatch = () => {
         dispatch(initializeWallets());

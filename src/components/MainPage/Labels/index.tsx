@@ -1,10 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectWalletState } from "../../../features/walletItemSlice";
-
-import {
-    getBiggerValueOfTwo,
-    getSmallerValueOfTwo,
-} from "../../../apis/globalApi";
+import { getSmallerValueOfTwo } from "../../../apis/globalApi";
 import WalletCreationLabel from "../../WalletCreationLabel";
 import NextButtonEnabled from "../StepButtons/NextButtonEnabled";
 import ArrowLeftImage from "../../../assets/Expand_left.png";
@@ -12,28 +8,30 @@ import ArrowRightImage from "../../../assets/Expand_right.png";
 import "./style.css";
 import { useState } from "react";
 
-const LabelStep = () => {
-    const [pageNumber, setPageNumber] = useState(1);
+interface ArrangeIndex {
+    startIndex: number;
+    endIndex: number;
+}
 
-    const walletState = useSelector(selectWalletState);
-    const totalWalletCount = walletState.count;
-    const totalPages = Math.ceil(totalWalletCount / 6);
-    const walletData = walletState.data;
+const LabelStep: React.FC = () => {
+    const [pageNumber, setPageNumber] = useState<number>(1);
 
-    const [arrangeIndex, setArrangeIndex] = useState({
+    const walletState = useSelector(selectWalletState) as { count: number } | undefined;
+    const totalWalletCount: number = walletState?.count || 0;
+
+    const totalPages: number = Math.ceil(totalWalletCount / 6);
+
+    const [arrangeIndex, setArrangeIndex] = useState<ArrangeIndex>({
         startIndex: 1,
         endIndex: getSmallerValueOfTwo(totalWalletCount, 6),
     });
 
-    const handlePageChange = (value) => {
+    const handlePageChange = (value: number) => {
         if (value > 0) {
             if (pageNumber * 6 >= totalWalletCount) return;
             setArrangeIndex({
                 startIndex: pageNumber * 6 + 1,
-                endIndex: getSmallerValueOfTwo(
-                    pageNumber * 6 + 6,
-                    totalWalletCount
-                ),
+                endIndex: getSmallerValueOfTwo(pageNumber * 6 + 6, totalWalletCount),
             });
         }
         if (value < 0) {
@@ -67,29 +65,15 @@ const LabelStep = () => {
                             height: "388px",
                         }}
                     >
-                        <div>
-                            <div className="row">
-                                {/* {for (let i = startIndex; i < endIndex; i++)
-                                    return (
-                                        <div className="col-6">
+                        <div className="row">
+                            {Array.from(
+                                { length: arrangeIndex.endIndex - arrangeIndex.startIndex + 1 },
+                                (_, index) => index + arrangeIndex.startIndex
+                            ).map((item) => (
+                                <div key={item} className="col-6">
                                     <WalletCreationLabel />
                                 </div>
-                                    )
-                                } */}
-                                {Array.from(
-                                    {
-                                        length:
-                                            arrangeIndex.endIndex -
-                                            arrangeIndex.startIndex +
-                                            1,
-                                    },
-                                    (_, index) => index
-                                ).map((item) => (
-                                    <div key={item} className="col-6">
-                                        <WalletCreationLabel />
-                                    </div>
-                                ))}
-                            </div>
+                            ))}
                         </div>
                     </div>
                     <div
@@ -104,10 +88,10 @@ const LabelStep = () => {
                                 style={{ marginRight: "5px" }}
                                 onClick={() => handlePageChange(-1)}
                             >
-                                <img src={ArrowLeftImage} />
+                                <img src={ArrowLeftImage} alt="Left Arrow" />
                             </button>
                             <button onClick={() => handlePageChange(1)}>
-                                <img src={ArrowRightImage} />
+                                <img src={ArrowRightImage} alt="Right Arrow" />
                             </button>
                         </div>
                     </div>

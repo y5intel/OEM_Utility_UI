@@ -1,38 +1,33 @@
-import { useState } from "react";
-import Select from "react-select";
+import React, { useState } from "react";
+import Select, { StylesConfig } from "react-select";
 import NextButtonEnabled from "../StepButtons/NextButtonEnabled";
 import NextButtonDisabled from "../StepButtons/NextButtonDisabled";
 import BackButton from "../StepButtons/BackButton";
 import InfoImage from "../../../assets/Info.png";
 import "./style.css";
 
-const selectOptions = [
+interface Option {
+    value: string;
+    label: string;
+}
+
+const selectOptions: Option[] = [
     { value: "sc1", label: "Smart Contract 1" },
     { value: "sc2", label: "Smart Contract 2" },
-    { value: "sc3", label: "Smart Contract 3" },
-    { value: "sc4", label: "Smart Contract 4" },
-    { value: "sc5", label: "Smart Contract 5" },
-    { value: "sc6", label: "Smart Contract 6" },
-    { value: "sc7", label: "Smart Contract 7" },
-    { value: "sc8", label: "Smart Contract 8" },
-    { value: "sc9", label: "Smart Contract 9" },
-    { value: "sc10", label: "Smart Contract 10" },
+    // Add other options here
 ];
 
-const SmartContractStep = () => {
-    const [selectedOption, setSelectedOption] = useState(null);
+const SmartContractStep: React.FC = () => {
+    const [selectedOption, setSelectedOption] = useState<Option | null>(null);
 
-    const customStyles = {
-        dropdownIndicator: (base, state) => ({
+    const customStyles: StylesConfig<Option, false> = {
+        dropdownIndicator: (base) => ({
             ...base,
             transition: "all .2s ease",
-            transform: state.selectProps.menuIsOpen ? "rotate(180deg)" : null,
-            ...(selectedOption
-                ? {
-                      color: "#FFF",
-                  }
-                : null),
+            transform: "none", // Change the transform to a valid type here
+            color: selectedOption ? "#FFF" : undefined,
         }),
+
 
         option: (styles) => ({
             ...styles,
@@ -55,7 +50,7 @@ const SmartContractStep = () => {
 
         singleValue: (styles) => ({
             ...styles,
-            color: selectedOption ? "#FFF" : null,
+            color: selectedOption ? "#FFF" : undefined,
         }),
     };
 
@@ -73,8 +68,8 @@ const SmartContractStep = () => {
                         openMenuOnFocus
                         styles={customStyles}
                         placeholder="Select --"
-                        defaultValue={selectedOption}
-                        onChange={setSelectedOption}
+                        value={selectedOption}
+                        onChange={(value) => setSelectedOption(value)}
                         // menuIsOpen
                     />
                 </div>
