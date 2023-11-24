@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { selectWalletState } from "../../../features/walletItemSlice";
 
 import WalletCreationLabel from "../../WalletCreationLabel";

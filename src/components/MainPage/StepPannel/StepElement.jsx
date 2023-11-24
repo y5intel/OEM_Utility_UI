@@ -18,7 +18,7 @@ const StepElement = ({ id, title, imgSrc1, imgSrc2 }) => {
                 </span>
                 <span className="step-title">{title}</span>
                 <div className="step-image">
-                    <img src={imgSrc} />
+                    <img src={imgSrc} alt="Step Src" />
                 </div>
             </div>
             <div className="stepElement-bottom"></div>

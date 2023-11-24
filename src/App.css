@@ -12,7 +12,7 @@ p {
 .logobar {
   height: 58px;
   color: #000;
-  background-color: #d9d9d9;
+  background-color: #D9D9D9;   
   padding: 0px 17px;
   font-size: 22px;
   font-weight: 400;
@@ -20,7 +20,7 @@ p {
 
 .main {
   width: 100%;
-  background: #fff;
+  background: #FFF;
 }
 
 .position-center {
@@ -39,17 +39,15 @@ p {
 }
 
 .btn-custom-disabled {
-  color: #fff;
-  background: #d9d9d9;
+  color: #FFF;
+  background: #D9D9D9;
   border: 1px solid transparent;
-  float: right;
 }
 
 .btn-custom-enabled {
-  color: #fff;
-  background: linear-gradient(90deg, #573cfa 54.17%, #372794 100%);
-  border: 1px solid #573cfa;
-  float: right;
+  color: #FFF;
+  background: linear-gradient(90deg, #573CFA 54.17%, #372794 100%);
+  border: 1px solid #573CFA;
 }
 
 .btn-no-style {
@@ -58,6 +56,6 @@ p {
 }
 
 .bg-blue-gradient {
-  background: linear-gradient(90deg, #573cfa 54.17%, #372794 100%);
-  color: #fdfdfd;
+  background: linear-gradient(90deg, #573CFA 54.17%, #372794 100%);
+  color: #FDFDFD;
 }

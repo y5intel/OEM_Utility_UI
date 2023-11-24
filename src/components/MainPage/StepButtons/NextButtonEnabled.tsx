@@ -1,8 +1,20 @@
+import React from "react";
 import { useDispatch } from "react-redux";
 import { incrementStepCount } from "../../../features/stepCounterSlice";
 
-const NextButtonEnabled = ({ children, width, onClick }) => {
+interface NextButtonProps {
+    children: React.ReactNode;
+    width?: string;
+    onClick?: () => void;
+}
+
+const NextButtonEnabled: React.FC<NextButtonProps> = ({
+    children,
+    width,
+    onClick,
+}: NextButtonProps) => {
     const dispatch = useDispatch();
+
     const handleClick = () => {
         if (onClick) {
             onClick();

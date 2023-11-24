@@ -16,7 +16,9 @@ interface ArrangeIndex {
 const LabelStep: React.FC = () => {
     const [pageNumber, setPageNumber] = useState<number>(1);
 
-    const walletState = useSelector(selectWalletState) as { count: number } | undefined;
+    const walletState = useSelector(selectWalletState) as
+        | { count: number }
+        | undefined;
     const totalWalletCount: number = walletState?.count || 0;
 
     const totalPages: number = Math.ceil(totalWalletCount / 6);
@@ -31,7 +33,10 @@ const LabelStep: React.FC = () => {
             if (pageNumber * 6 >= totalWalletCount) return;
             setArrangeIndex({
                 startIndex: pageNumber * 6 + 1,
-                endIndex: getSmallerValueOfTwo(pageNumber * 6 + 6, totalWalletCount),
+                endIndex: getSmallerValueOfTwo(
+                    pageNumber * 6 + 6,
+                    totalWalletCount
+                ),
             });
         }
         if (value < 0) {
@@ -67,7 +72,12 @@ const LabelStep: React.FC = () => {
                     >
                         <div className="row">
                             {Array.from(
-                                { length: arrangeIndex.endIndex - arrangeIndex.startIndex + 1 },
+                                {
+                                    length:
+                                        arrangeIndex.endIndex -
+                                        arrangeIndex.startIndex +
+                                        1,
+                                },
                                 (_, index) => index + arrangeIndex.startIndex
                             ).map((item) => (
                                 <div key={item} className="col-6">

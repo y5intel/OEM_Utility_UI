@@ -1,28 +1,28 @@
 import { useSelector } from "react-redux";
 import { selectStepCount } from "../../features/stepCounterSlice";
-import ChangeWalletButton from "./ChangeWalletButton";
+// import ChangeWalletButton from "./ChangeWalletButton";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
 const titles = [
-  "Master Wallet",
-  "Smart Contract",
-  "Project Cost",
-  "Payment",
-  "Wallet Creation",
-  "Labels",
-  "Loading",
-  "Completed!",
+    "Master Wallet",
+    "Smart Contract",
+    "Project Cost",
+    "Payment",
+    "Wallet Creation",
+    "Labels",
+    "Loading",
+    "Completed!",
 ];
 
 const MainPageTitle = () => {
-  const stepCount = useSelector(selectStepCount);
+    const stepCount = useSelector(selectStepCount);
 
-  return (
-    <div className="titlebar bg-blue-gradient">
-      <span>{titles[stepCount]}</span>
-      {stepCount === 0 && <WalletMultiButton />}
-    </div>
-  );
+    return (
+        <div className="titlebar bg-blue-gradient">
+            <span>{titles[stepCount]}</span>
+            {stepCount === 0 && <WalletMultiButton />}
+        </div>
+    );
 };
 
 export default MainPageTitle;

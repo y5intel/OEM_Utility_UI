@@ -1,4 +1,14 @@
-const NextButtonDisabled = ({ children, width }) => {
+import React from "react";
+
+interface NextButtonDisabledProps {
+    children: React.ReactNode;
+    width?: string;
+}
+
+const NextButtonDisabled: React.FC<NextButtonDisabledProps> = ({
+    children,
+    width,
+}: NextButtonDisabledProps) => {
     return (
         <button
             style={{

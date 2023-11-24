@@ -30,7 +30,7 @@ const MasterWalletStep: React.FC<MasterWalletStepProps> = () => {
     const handleBackButtonClick = () => navigate("/login");
     const [balance, setBalance] = useState<number>(0);
     const [mintAddress, setMintAddress] = useState<string>("");
-    const [tokenBalance, setTokenBalance] = useState<string>("")
+    const [tokenBalance, setTokenBalance] = useState<string>("");
 
     // const SOLANA_CONNECTION = new Connection(clusterApiUrl("devnet"));
     const WALLET_ADDRESS = useMemo(() => publicKey?.toBase58(), [publicKey]);
@@ -71,7 +71,7 @@ const MasterWalletStep: React.FC<MasterWalletStepProps> = () => {
             {
                 memcmp: {
                     offset: 32,
-                    bytes: wallet?.toBuffer()?.toString('base64') || '', // Convert Buffer to base64 string
+                    bytes: wallet?.toBuffer()?.toString("base64") || "", // Convert Buffer to base64 string
                 },
             },
         ];
@@ -84,16 +84,21 @@ const MasterWalletStep: React.FC<MasterWalletStepProps> = () => {
         );
         accounts.forEach((account, i) => {
             const parsedAccountInfo = account.account.data;
-            const mintAddress = parsedAccountInfo["parsed"]["info"]["mint"];
-            const tokenBalance =
-                parsedAccountInfo["parsed"]["info"]["tokenAmount"]["uiAmount"];
-            console.log(
-                `Token Account No. ${i + 1}: ${account.pubkey.toString()}`
-            );
-            console.log(`--Token Mint: ${mintAddress}`);
-            setMintAddress(mintAddress);
-            console.log(`--Token Balance: ${tokenBalance}`);
-            setTokenBalance(tokenBalance);
+
+            if ("parsed" in parsedAccountInfo) {
+                const mintAddress = parsedAccountInfo["parsed"]["info"]["mint"];
+                const tokenBalance =
+                    parsedAccountInfo["parsed"]["info"]["tokenAmount"][
+                        "uiAmount"
+                    ];
+                console.log(
+                    `Token Account No. ${i + 1}: ${account.pubkey.toString()}`
+                );
+                console.log(`--Token Mint: ${mintAddress}`);
+                setMintAddress(mintAddress);
+                console.log(`--Token Balance: ${tokenBalance}`);
+                setTokenBalance(tokenBalance);
+            }
         });
     };
 
@@ -177,7 +182,11 @@ const MasterWalletStep: React.FC<MasterWalletStepProps> = () => {
                             </span>
                         </div>
                         <button className="btn-no-style">
-                            <img src={CopyImage} style={{ width: "30px" }} />
+                            <img
+                                src={CopyImage}
+                                alt="Copy"
+                                style={{ width: "30px" }}
+                            />
                         </button>
                     </div>
                 </div>

@@ -1,7 +1,8 @@
+import React from "react";
 import { useDispatch } from "react-redux";
 import { decrementStepCount } from "../../../features/stepCounterSlice";
 
-const BackButton = () => {
+const BackButton: React.FC = () => {
     const dispatch = useDispatch();
 
     return (
