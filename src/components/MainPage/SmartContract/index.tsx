@@ -14,6 +14,14 @@ interface Option {
 const selectOptions: Option[] = [
     { value: "sc1", label: "Smart Contract 1" },
     { value: "sc2", label: "Smart Contract 2" },
+    { value: "sc3", label: "Smart Contract 3" },
+    { value: "sc4", label: "Smart Contract 4" },
+    { value: "sc5", label: "Smart Contract 5" },
+    { value: "sc6", label: "Smart Contract 6" },
+    { value: "sc7", label: "Smart Contract 7" },
+    { value: "sc8", label: "Smart Contract 8" },
+    { value: "sc9", label: "Smart Contract 9" },
+    { value: "sc10", label: "Smart Contract 10" },
     // Add other options here
 ];
 
@@ -27,7 +35,6 @@ const SmartContractStep: React.FC = () => {
             transform: "none", // Change the transform to a valid type here
             color: selectedOption ? "#FFF" : undefined,
         }),
-
 
         option: (styles) => ({
             ...styles,

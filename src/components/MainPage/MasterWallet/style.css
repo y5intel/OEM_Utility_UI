@@ -21,6 +21,20 @@
     border: 1px solid #000;
 }
 
-.mainPage .masterWallet .block .content .d-flex div {
+.mainPage .masterWallet .block .content .d-flex p {
     width: 50%;
+}
+
+.mainPage .masterWallet .block button {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.mainPage .masterWallet .block button:hover {
+    transform: scale(1.2);
+}
+
+.mainPage .masterWallet .block button img {
+    width: 30px;
+    transition: width 0.3s ease;
 }
