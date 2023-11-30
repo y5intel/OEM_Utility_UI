@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 import LogoBar from "../../components/LogoBar";
 import SelectWalletContainer from "./SelectWalletContainer";
@@ -8,7 +8,7 @@ import WalletConnect from "./WalletConnectButton";
 import "./WalletConnect.css";
 
 function WalletConnectionPage() {
-    const [selectedWallet, setSelectedWallet] = useState("");
+    const [selectedWallet, setSelectedWallet] = useState<string>("");
 
     return (
         <>

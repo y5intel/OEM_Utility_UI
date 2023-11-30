@@ -12,6 +12,7 @@ const WalletList: React.FC<WalletListProps> = ({
     setSelectedWallet,
 }) => {
     const { wallets, select } = useWallet();
+    console.log("Wallets =>", wallets);
 
     return (
         <div className="select-wallet-sector">
