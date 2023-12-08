@@ -1,17 +1,12 @@
-import React, { useState } from "react";
-import Select, { StylesConfig } from "react-select";
+import { useState } from "react";
+import Select from "react-select";
 import NextButtonEnabled from "../StepButtons/NextButtonEnabled";
 import NextButtonDisabled from "../StepButtons/NextButtonDisabled";
 import BackButton from "../StepButtons/BackButton";
 import InfoImage from "../../../assets/Info.png";
 import "./style.css";
 
-interface Option {
-    value: string;
-    label: string;
-}
-
-const selectOptions: Option[] = [
+const selectOptions = [
     { value: "sc1", label: "Smart Contract 1" },
     { value: "sc2", label: "Smart Contract 2" },
     { value: "sc3", label: "Smart Contract 3" },
@@ -22,13 +17,12 @@ const selectOptions: Option[] = [
     { value: "sc8", label: "Smart Contract 8" },
     { value: "sc9", label: "Smart Contract 9" },
     { value: "sc10", label: "Smart Contract 10" },
-    // Add other options here
 ];
 
-const SmartContractStep: React.FC = () => {
-    const [selectedOption, setSelectedOption] = useState<Option | null>(null);
+const SmartContractStep = () => {
+    const [selectedOption, setSelectedOption] = useState(null);
 
-    const customStyles: StylesConfig<Option, false> = {
+    const customStyles = {
         dropdownIndicator: (base) => ({
             ...base,
             transition: "all .2s ease",

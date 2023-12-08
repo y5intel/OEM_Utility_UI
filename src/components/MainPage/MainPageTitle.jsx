@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectStepCount } from "../../features/stepCounterSlice";
 // import ChangeWalletButton from "./ChangeWalletButton";
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
 const titles = [
     "Master Wallet",
@@ -20,7 +19,7 @@ const MainPageTitle = () => {
     return (
         <div className="titlebar bg-blue-gradient">
             <span>{titles[stepCount]}</span>
-            {stepCount === 0 && <WalletMultiButton />}
+            {stepCount === 0 && <button>Change Wallet</button>}
         </div>
     );
 };

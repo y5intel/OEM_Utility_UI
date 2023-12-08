@@ -1,10 +1,10 @@
 # OEM Utility UI [link](https://oem-utility-ui.netlify.app)
 
-This project is based on React and Vite, and it integrates Solana Web3 functionality. It serves as the front-end for the OEM Utility application.
+This project is based on Create React App. It serves as the front-end for the OEM Utility application.
 
 ## Design
 
-To view the project's design, you can visit the Figma link [here](https://www.figma.com/file/MXY16Umh7IiX99Lf4D5ySV/OEM?node-id=64%3A89&mode=dev).
+To view the project's design, you can visit the Figma link [here](https://www.figma.com/file/cTpzTDHEam4SyPsDGK50T5/Utility-Project?type=design&node-id=64-89&mode=design&t=mr4eVgz9WfDqtnpl-0).
 
 ## Getting Started
 

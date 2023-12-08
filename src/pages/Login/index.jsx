@@ -25,7 +25,7 @@ const LoginPage = () => {
                     </div>
                     <button
                         className="btn-custom btn-custom-default bg-blue-gradient"
-                        onClick={() => navigate("/wallet-connect")}
+                        onClick={() => navigate("/wallet-import")}
                     >
                         Log in
                     </button>

@@ -1,69 +1,38 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useWallet } from "@solana/wallet-adapter-react";
 import CopyImage from "../../../assets/Copy_alt_light.png";
 import RefreshImage from "../../../assets/Refresh_light.png";
 import NextButtonEnabled from "../StepButtons/NextButtonEnabled";
 import NextButtonDisabled from "../StepButtons/NextButtonDisabled";
 import "./style.css";
 
-import {
-    Connection,
-    PublicKey,
-    LAMPORTS_PER_SOL,
-    clusterApiUrl,
-} from "@solana/web3.js";
-
 interface MasterWalletStepProps {
     // Define props if needed
 }
 
 const MasterWalletStep: React.FC<MasterWalletStepProps> = () => {
-    const { publicKey, wallet, connect, disconnect } = useWallet();
-    const walletName = wallet?.adapter.name;
-    const walletIcon = wallet?.adapter.icon;
     const navigate = useNavigate();
-    const handleBackButtonClick = () => navigate("/wallet-connect");
+    const handleBackButtonClick = () => navigate("/wallet-import");
     const [balance, setBalance] = useState<number>(0);
     const [showCopied, setShowCopied] = useState(false);
 
-    const WALLET_ADDRESS = useMemo(() => publicKey?.toBase58(), [publicKey]);
-
-    const SOLANA_CONNECTION = useMemo(
-        () => new Connection(clusterApiUrl("devnet")),
-        []
-    );
-
-    useEffect(() => {
-        if (!walletName) {
-            handleBackButtonClick();
-        }
-        if (WALLET_ADDRESS) {
-            (async () => {
-                const balance = await SOLANA_CONNECTION.getBalance(
-                    new PublicKey(WALLET_ADDRESS)
-                );
-                setBalance(balance / LAMPORTS_PER_SOL);
-            })();
-        }
-    }, [WALLET_ADDRESS, SOLANA_CONNECTION]);
+    // useEffect(() => {
+    //     if (!walletName) {
+    //         handleBackButtonClick();
+    //     }
+    //     if (WALLET_ADDRESS) {
+    //         (async () => {
+    //             const balance = await SOLANA_CONNECTION.getBalance(
+    //                 new PublicKey(WALLET_ADDRESS)
+    //             );
+    //             setBalance(balance / LAMPORTS_PER_SOL);
+    //         })();
+    //     }
+    // }, [WALLET_ADDRESS, SOLANA_CONNECTION]);
 
     const handleRefresh = () => {
-        connect();
-    };
-
-    const handleCopyToClipboard = () => {
-        navigator.clipboard
-            .writeText(WALLET_ADDRESS ? WALLET_ADDRESS : "") // Replace with the actual text you want to copy
-            .then(() => {
-                setShowCopied(true); // Display "Copied" text
-                setTimeout(() => {
-                    setShowCopied(false); // Hide "Copied" text after 1 second
-                }, 1000);
-            })
-            .catch((error) => {
-                console.error("Error copying to clipboard: ", error);
-            });
+        //     connect();
+        console.log("handle Refresh");
     };
 
     return (
@@ -72,9 +41,9 @@ const MasterWalletStep: React.FC<MasterWalletStepProps> = () => {
                 <div className="block">
                     <div className="title">
                         <span className="d-flex align-items-center">
-                            {walletName} Wallet
+                            Wallet
                             <img
-                                src={walletIcon}
+                                // src={walletIcon}
                                 style={{
                                     width: "30px",
                                     height: "30px",
@@ -104,12 +73,13 @@ const MasterWalletStep: React.FC<MasterWalletStepProps> = () => {
                                 Wallet ID:
                             </span>
                             <span style={{ fontSize: "14px" }}>
-                                {WALLET_ADDRESS}
+                                {/* {WALLET_ADDRESS} */}
+                                Wallet Address
                             </span>
                         </div>
                         <button
                             className="btn-no-style"
-                            onClick={handleCopyToClipboard}
+                            // onClick={handleCopyToClipboard}
                         >
                             {showCopied ? (
                                 <span>Copied</span>

@@ -1,0 +1,56 @@
+.wallet-import-page .main {
+    width: 100%;
+    padding: 110px 174px 66px;
+}
+
+.wallet-import-page .row {
+    padding: 9px;
+}
+
+.wallet-import-page .phrase-word-input {
+    font-size: 20px;
+    padding: 9px;
+}
+
+.wallet-import-page .phrase-word-input input {
+    width: 100%;
+    padding: 7px;
+    text-align: center;
+    border: 1px solid #a2a2a2;
+    color: #000;
+}
+
+.wallet-import-page .phrase-word-input input::placeholder {
+    color: #a2a2a2;
+}
+
+.wallet-import-page.active .phrase-word-input input {
+    border: 1px solid #000;
+}
+
+.wallet-import-page .button-area {
+    width: 100%;
+    text-align: center;
+    margin-top: 9px;
+    margin-bottom: 65px;
+}
+
+.wallet-import-page button {
+    width: 300px;
+}
+
+.wallet-import-page .error-message {
+    background: #e70936;
+    padding: 9px;
+    color: #fff;
+    font-size: 17px;
+    text-align: center;
+    width: 510px;
+    margin: auto;
+}
+
+.wallet-import-page .error-message img {
+    width: 20px;
+    margin-right: 7px;
+    margin-top: -5px;
+}
