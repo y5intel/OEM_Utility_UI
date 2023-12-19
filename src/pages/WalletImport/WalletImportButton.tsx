@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import importWallet from "apis/importWallet";
+import { importWallet } from "apis/walletApi";
 import { storeKeypair } from "features/keypairSingerSlice";
 
 interface WalletImportProps {

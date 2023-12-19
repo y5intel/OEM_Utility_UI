@@ -20,4 +20,10 @@ const keypairSingerSlice = createSlice({
 });
 
 export const { storeKeypair, clearKeypair } = keypairSingerSlice.actions;
+
+export const selectKeypairState = (state) => ({
+    publicKey: state.keypairSigner.publicKey,
+    secretKey: state.keypairSigner.secretKey,
+});
+
 export default keypairSingerSlice.reducer;

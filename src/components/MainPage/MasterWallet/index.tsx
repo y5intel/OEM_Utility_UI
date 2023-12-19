@@ -4,6 +4,10 @@ import CopyImage from "../../../assets/Copy_alt_light.png";
 import RefreshImage from "../../../assets/Refresh_light.png";
 import NextButtonEnabled from "../StepButtons/NextButtonEnabled";
 import NextButtonDisabled from "../StepButtons/NextButtonDisabled";
+import walletIcon from "../../../assets/phantom-logo-freelogovectors-2.png";
+import { useSelector } from "react-redux";
+import { selectKeypairState } from "features/keypairSingerSlice";
+import { getSolBalance } from "apis/walletApi";
 import "./style.css";
 
 interface MasterWalletStepProps {
@@ -16,19 +20,21 @@ const MasterWalletStep: React.FC<MasterWalletStepProps> = () => {
     const [balance, setBalance] = useState<number>(0);
     const [showCopied, setShowCopied] = useState(false);
 
-    // useEffect(() => {
-    //     if (!walletName) {
-    //         handleBackButtonClick();
-    //     }
-    //     if (WALLET_ADDRESS) {
-    //         (async () => {
-    //             const balance = await SOLANA_CONNECTION.getBalance(
-    //                 new PublicKey(WALLET_ADDRESS)
-    //             );
-    //             setBalance(balance / LAMPORTS_PER_SOL);
-    //         })();
-    //     }
-    // }, [WALLET_ADDRESS, SOLANA_CONNECTION]);
+    const publicKey = useSelector(selectKeypairState).publicKey;
+
+    useEffect(() => {
+        const fetchBalance = async () => {
+            try {
+                const wallet_balance = await getSolBalance(publicKey);
+                console.log({ wallet_balance });
+                setBalance(wallet_balance);
+            } catch (error) {
+                console.error("Error fetching balance:", error);
+            }
+        };
+
+        fetchBalance();
+    }, [publicKey]);
 
     const handleRefresh = () => {
         //     connect();
@@ -41,12 +47,12 @@ const MasterWalletStep: React.FC<MasterWalletStepProps> = () => {
                 <div className="block">
                     <div className="title">
                         <span className="d-flex align-items-center">
-                            Wallet
+                            Solana Wallet
                             <img
-                                // src={walletIcon}
+                                src={walletIcon}
                                 style={{
-                                    width: "30px",
-                                    height: "30px",
+                                    width: "24px",
+                                    height: "24px",
                                     marginLeft: "10px",
                                 }}
                                 alt="icon"
@@ -73,8 +79,7 @@ const MasterWalletStep: React.FC<MasterWalletStepProps> = () => {
                                 Wallet ID:
                             </span>
                             <span style={{ fontSize: "14px" }}>
-                                {/* {WALLET_ADDRESS} */}
-                                Wallet Address
+                                {publicKey}
                             </span>
                         </div>
                         <button
