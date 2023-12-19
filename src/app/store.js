@@ -6,10 +6,12 @@ import thunk from "redux-thunk";
 
 import stepCounterReducer from "../features/stepCounterSlice";
 import walletItemsReducer from "../features/walletItemSlice";
+import keypairSingerSlice from "features/keypairSingerSlice";
 
 const reducers = combineReducers({
     stepCounter: stepCounterReducer,
     walletItems: walletItemsReducer,
+    keypairSigner: keypairSingerSlice,
 });
 
 const persistConfig = {

@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectStepCount } from "../../features/stepCounterSlice";
-// import ChangeWalletButton from "./ChangeWalletButton";
+import ChangeWalletButton from "./ChangeWalletButton";
 
 const titles = [
     "Master Wallet",
@@ -19,7 +19,7 @@ const MainPageTitle = () => {
     return (
         <div className="titlebar bg-blue-gradient">
             <span>{titles[stepCount]}</span>
-            {stepCount === 0 && <button>Change Wallet</button>}
+            {stepCount === 0 && <ChangeWalletButton />}
         </div>
     );
 };

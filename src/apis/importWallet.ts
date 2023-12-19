@@ -1,33 +1,25 @@
-// import axios, { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 
-// interface ImportWalletResponse {
-//     data: string[]; // Adjust the type based on the actual response structure
-// }
+const importWallet = async (mnemonic: string): Promise<string[] | false> => {
+    const apiUrl = process.env.REACT_APP_LOCAL_SERVER_URL;
+    // const apiUrl = process.env.REACT_APP_SERVER_URL;
 
-// const importWallet = async (
-//     mnemonicWords: string[]
-// ): Promise<string[] | false> => {
-const importWallet = async (mnemonicWords: string[]) => {
-    const config = {
-        data: [
-            {
-                mnemonic: mnemonicWords,
-            },
-        ],
-    };
+    if (!apiUrl) {
+        console.error("API URL is undefined!");
+        return false;
+    }
 
-    // try {
-    //     const response: AxiosResponse<ImportWalletResponse> = await axios.post(
-    //         `${process.env.REACT_APP_SERVER_URL}/api/importWallet`,
-    //         config
-    //     );
+    try {
+        const response: AxiosResponse<any> = await axios.post(
+            `${apiUrl}/oem/login-oem`,
+            { mnemonic: mnemonic }
+        );
 
-    //     return response.data.data;
-    // } catch (error) {
-    //     console.error("Error!", error);
-    //     return false;
-    // }
-    return config;
+        return response.data; // Adjust based on the actual structure of the response
+    } catch (error) {
+        console.error("Error!", error);
+        return false;
+    }
 };
 
 export default importWallet;

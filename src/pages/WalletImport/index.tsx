@@ -10,6 +10,7 @@ const WalletImportPage: React.FC = () => {
     const [mnemonicWords, setMnemonicWords] = useState<string[]>(
         Array(12).fill("")
     );
+    const [isWalletFound, setIsWalletFound] = useState(true);
 
     const allFilled = mnemonicWords.every((word) => word.trim() !== "");
 
@@ -21,8 +22,12 @@ const WalletImportPage: React.FC = () => {
                     mnemonicWords={mnemonicWords}
                     setMnemonicWords={setMnemonicWords}
                 />
-                <WalletImportButton allFilled={allFilled} />
-                <WalletImportError />
+                <WalletImportButton
+                    mnemonicWords={mnemonicWords}
+                    allFilled={allFilled}
+                    setIsWalletFound={setIsWalletFound}
+                />
+                {!isWalletFound && <WalletImportError />}
             </div>
         </div>
     );

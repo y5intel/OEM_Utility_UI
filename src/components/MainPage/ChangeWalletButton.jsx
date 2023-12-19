@@ -1,4 +1,15 @@
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { clearKeypair } from "features/keypairSingerSlice";
+
 const ChangeWalletButton = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const handleClick = () => {
+        dispatch(clearKeypair());
+        navigate("/wallet-import");
+    };
+
     return (
         <button
             style={{
@@ -7,6 +18,7 @@ const ChangeWalletButton = () => {
                 padding: "0px 15px",
                 fontSize: "20px",
             }}
+            onClick={handleClick}
         >
             Change Wallet
         </button>
