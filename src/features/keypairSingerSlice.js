@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const keypairSingerSlice = createSlice({
+const keypairSingerReducer = createSlice({
     name: "keypairSigner",
     initialState: {
         publicKey: "",
@@ -19,11 +19,8 @@ const keypairSingerSlice = createSlice({
     },
 });
 
-export const { storeKeypair, clearKeypair } = keypairSingerSlice.actions;
+export const { storeKeypair, clearKeypair } = keypairSingerReducer.actions;
 
-export const selectKeypairState = (state) => ({
-    publicKey: state.keypairSigner.publicKey,
-    secretKey: state.keypairSigner.secretKey,
-});
+export const selectKeypairState = (state) => state.keypairSigner;
 
-export default keypairSingerSlice.reducer;
+export default keypairSingerReducer.reducer;

@@ -1,19 +1,19 @@
-#react-select-3-listbox>div::-webkit-scrollbar {
-    background: #D9D9D9 !important;
+#react-select-3-listbox::-webkit-scrollbar {
+    background: #d9d9d9 !important;
     border-radius: 12px;
 }
 
-#react-select-3-listbox>div::-webkit-scrollbar-track {
+#react-select-3-listbox::-webkit-scrollbar-track {
     border-radius: 12px;
-    background: #D9D9D9;
+    background: #d9d9d9;
 }
 
-#react-select-3-listbox>div::-webkit-scrollbar-thumb {
-    background: #573CFA !important;
+#react-select-3-listbox::-webkit-scrollbar-thumb {
+    background: #573cfa !important;
     border-radius: 12px;
 }
 
-#react-select-3-listbox>div::-webkit-scrollbar-thumb:hover {
+#react-select-3-listbox::-webkit-scrollbar-thumb:hover {
     background: blue !important;
 }
 
@@ -38,7 +38,7 @@
 
 .mainPage .smartContract .block .content {
     border: 1px solid #000;
-    padding: 0px 32px;
+    padding: 0px 18px;
 }
 
 .mainPage .smartContract .block .content .d-flex {
@@ -47,23 +47,55 @@
     color: #000;
 }
 
+.mainPage .smartContract .block .content.d-flex {
+    overflow-y: scroll;
+    max-height: 200px;
+    scrollbar-width: thin; /* Ensure scrollbar is visible in Firefox */
+    scrollbar-color: #573cfa #372794;
+}
+
+.mainPage .smartContract .block .content.d-flex::-webkit-scrollbar-thumb {
+    border-radius: 17px;
+    background: #573cfa;
+}
+
+.content.d-flex::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+    height: 12px; /* Height of the scrollbar */
+    border-radius: 12px; /* Adjust the border-radius to match the thumb */
+}
+
 .mainPage .smartContract .block .content .d-flex .desc {
     font-size: 16px !important;
 }
 
-.mainPage .smartContract .block .content .d-flex div {
-    width: 50%;
+.mainPage .smartContract .block .content .d-flex div:first-child {
+    width: 150px;
+}
+
+.mainPage .smartContract .block .content .d-flex div:last-child {
+    width: 300px;
+}
+
+.mainPage .smartContract .block .content .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainPage .smartContract .block .content .image img {
+    width: 100%;
 }
 
 .mainPage .smartContract .warn-block {
     margin-top: 50px;
 }
 
-.mainPage .smartContract .warn-block>div {
+.mainPage .smartContract .warn-block > div {
     padding: 10px 11px;
-    background: #E70936;
+    background: #e70936;
     font-size: 20px;
-    color: #FFF;
+    color: #fff;
 }
 
 .mainPage .smartContract .warn-block img {

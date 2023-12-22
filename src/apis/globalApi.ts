@@ -16,3 +16,7 @@ export const getSmallerValueOfTwo = (
 ): number => {
     return firstVal < secondVal ? firstVal : secondVal;
 };
+
+export const isSufficientBalance = (totalCost: number, balance: number) => {
+    return totalCost <= balance;
+};

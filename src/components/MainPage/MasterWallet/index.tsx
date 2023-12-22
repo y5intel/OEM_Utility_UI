@@ -18,7 +18,8 @@ const MasterWalletStep: React.FC<MasterWalletStepProps> = () => {
     const navigate = useNavigate();
     const handleBackButtonClick = () => navigate("/wallet-import");
     const [balance, setBalance] = useState<number>(0);
-    const [showCopied, setShowCopied] = useState(false);
+    const [isCopied, setIsCopied] = useState(false);
+    const [isRefreshed, setIsRefreshed] = useState(false);
 
     const publicKey = useSelector(selectKeypairState).publicKey;
 
@@ -26,7 +27,6 @@ const MasterWalletStep: React.FC<MasterWalletStepProps> = () => {
         const fetchBalance = async () => {
             try {
                 const wallet_balance = await getSolBalance(publicKey);
-                console.log({ wallet_balance });
                 setBalance(wallet_balance);
             } catch (error) {
                 console.error("Error fetching balance:", error);
@@ -36,9 +36,25 @@ const MasterWalletStep: React.FC<MasterWalletStepProps> = () => {
         fetchBalance();
     }, [publicKey]);
 
-    const handleRefresh = () => {
-        //     connect();
-        console.log("handle Refresh");
+    const handleRefresh = async () => {
+        try {
+            const wallet_balance = await getSolBalance(publicKey);
+            setBalance(wallet_balance);
+            setIsRefreshed(true);
+            setTimeout(() => {
+                setIsRefreshed(false);
+            }, 1000);
+        } catch (error) {
+            console.error("Error refreshing balance:", error);
+        }
+    };
+
+    const handleCopyToClipboard = () => {
+        navigator.clipboard.writeText(publicKey);
+        setIsCopied(true);
+        setTimeout(() => {
+            setIsCopied(false);
+        }, 1000);
     };
 
     return (
@@ -58,17 +74,27 @@ const MasterWalletStep: React.FC<MasterWalletStepProps> = () => {
                                 alt="icon"
                             />
                         </span>
-                        <button
-                            className="btn-no-style refresh-button"
-                            onClick={handleRefresh}
-                        >
-                            <img src={RefreshImage} alt="Refresh" />
-                        </button>
+                        <div className="d-flex align-items-center">
+                            {isRefreshed && (
+                                <div
+                                    className="alert-msg"
+                                    style={{ fontWeight: 400 }}
+                                >
+                                    Refreshed!
+                                </div>
+                            )}
+                            <button
+                                className="btn-no-style refresh-button"
+                                onClick={handleRefresh}
+                            >
+                                <img src={RefreshImage} alt="Refresh" />
+                            </button>
+                        </div>
                     </div>
                     <div className="content d-flex justify-content-between align-items-center">
                         <div
                             className="d-flex align-items-center"
-                            style={{ padding: "10px 10px 10px 27px" }}
+                            style={{ padding: "10px 10px 10px 17px" }}
                         >
                             <span
                                 style={{
@@ -82,20 +108,21 @@ const MasterWalletStep: React.FC<MasterWalletStepProps> = () => {
                                 {publicKey}
                             </span>
                         </div>
-                        <button
-                            className="btn-no-style"
-                            // onClick={handleCopyToClipboard}
-                        >
-                            {showCopied ? (
-                                <span>Copied</span>
-                            ) : (
+                        <div className="d-flex align-items-center">
+                            {isCopied && (
+                                <div className="alert-msg">Copied!</div>
+                            )}
+                            <button
+                                className="btn-no-style"
+                                onClick={handleCopyToClipboard}
+                            >
                                 <img
                                     src={CopyImage}
                                     alt="Copy"
                                     style={{ width: "30px" }}
                                 />
-                            )}
-                        </button>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div className="block">

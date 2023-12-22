@@ -2,8 +2,18 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { decrementStepCount } from "../../../features/stepCounterSlice";
 
-const BackButton: React.FC = () => {
+interface BackButtonProps {
+    onClick?: () => void;
+}
+
+const BackButton: React.FC<BackButtonProps> = ({ onClick }) => {
     const dispatch = useDispatch();
+    const handleClick = () => {
+        if (onClick) {
+            onClick();
+        }
+        dispatch(decrementStepCount());
+    };
 
     return (
         <button
@@ -16,7 +26,7 @@ const BackButton: React.FC = () => {
                 fontSize: "20px",
                 fontWeight: "600",
             }}
-            onClick={() => dispatch(decrementStepCount())}
+            onClick={handleClick}
         >
             Back
         </button>

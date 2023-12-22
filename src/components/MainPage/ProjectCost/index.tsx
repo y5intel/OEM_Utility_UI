@@ -1,7 +1,10 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { setWalletCount } from "../../../features/walletItemSlice";
-import { isPositiveInteger } from "../../../apis/globalApi";
+import { isSufficientBalance } from "apis/globalApi";
+import { selectKeypairState } from "features/keypairSingerSlice";
+import { consumableTokenState } from "features/tokenItemSlice";
+import { getSolBalance } from "apis/walletApi";
 
 import NextButtonEnabled from "../StepButtons/NextButtonEnabled";
 import NextButtonDisabled from "../StepButtons/NextButtonDisabled";
@@ -10,13 +13,33 @@ import WarningSector from "../../WarningSector";
 import "./style.css";
 
 const ProjectCostStep: React.FC = () => {
-    const [amount, setAmount] = useState<string>("");
-    // const [isBalanceEnough, setIsBalanceEnough] = useState(false);
+    const [amount, setAmount] = useState<number>(0);
+    const [balance, setBalance] = useState<number>(0);
+
     const dispatch = useDispatch();
+    const selectedToken = useSelector(consumableTokenState).selectedToken;
+    const costFactor = selectedToken ? selectedToken.price : 0;
+
+    const totalCost = (costFactor * 1000000000 * amount) / 1000000000;
 
     const handleNextClick = () => {
         dispatch(setWalletCount(amount));
     };
+
+    const publicKey = useSelector(selectKeypairState).publicKey;
+
+    useEffect(() => {
+        const fetchBalance = async () => {
+            try {
+                const wallet_balance = await getSolBalance(publicKey);
+                setBalance(wallet_balance);
+            } catch (error) {
+                console.error("Error fetching balance:", error);
+            }
+        };
+
+        fetchBalance();
+    }, [publicKey]);
 
     return (
         <div className="projectCost">
@@ -30,37 +53,39 @@ const ProjectCostStep: React.FC = () => {
                         <input
                             placeholder="insert amount"
                             style={{ padding: "5px 36px", width: "200px" }}
-                            onChange={(e) => setAmount(e.target.value)}
+                            onChange={(e) =>
+                                setAmount(parseInt(e.target.value))
+                            }
                             value={amount}
                         ></input>
                     </div>
                     <div className="cost-area" style={{ padding: "26px 0px" }}>
                         <div style={{ borderBottom: "1px solid #000" }}>
                             <div>Cost Factor</div>
-                            <div>100</div>
+                            <div>{costFactor}</div>
                         </div>
                         <div style={{ fontWeight: "700" }}>
                             <div>Total Project Cost</div>
-                            <div>0</div>
+                            <div>{totalCost}</div>
                         </div>
                     </div>
                     <div
                         className={`balance-area ${
                             // isBalanceEnough ? "sufficient" : "insufficient"
-                            isPositiveInteger(amount)
+                            isSufficientBalance(totalCost, balance)
                                 ? "sufficient"
                                 : "insufficient"
                         }`}
                     >
                         <div>
-                            <div>Solflare Balance</div>
+                            <div>Solana Balance</div>
                             <div>
                                 <span style={{ marginRight: "10px" }}>SOL</span>
-                                <span>1,000,000.0000</span>
+                                <span>{balance}</span>
                             </div>
                         </div>
                         {/* {isBalanceEnough ? ( */}
-                        {isPositiveInteger(amount) ? (
+                        {isSufficientBalance(totalCost, balance) ? (
                             <div className="status-area">
                                 Sufficient Balance
                             </div>
@@ -72,7 +97,7 @@ const ProjectCostStep: React.FC = () => {
                     </div>
                 </div>
 
-                {!isPositiveInteger(amount) && (
+                {!isSufficientBalance(totalCost, balance) && (
                     <WarningSector text="Please insert number of wallets" />
                 )}
                 {/* {isPositiveInteger(amount) && !isBalanceEnough && (
@@ -82,7 +107,7 @@ const ProjectCostStep: React.FC = () => {
                 <div className="btn-block">
                     <BackButton />
                     {/* {isPositiveInteger(amount) && isBalanceEnough ? ( */}
-                    {isPositiveInteger(amount) ? (
+                    {isSufficientBalance(totalCost, balance) ? (
                         <NextButtonEnabled
                             width="180px"
                             onClick={handleNextClick}

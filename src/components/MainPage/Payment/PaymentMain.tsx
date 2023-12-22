@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { selectWalletState } from "../../../features/walletItemSlice";
 import BackButton from "../StepButtons/BackButton";
 import { FC } from "react";
+import { consumableTokenState } from "features/tokenItemSlice";
 
 interface WalletState {
     count: number;
@@ -14,6 +15,7 @@ interface PaymentMainProps {
 
 const PaymentMain: FC<PaymentMainProps> = ({ handleOpenModal }) => {
     const walletState = useSelector(selectWalletState) as WalletState;
+    const selectedToken = useSelector(consumableTokenState).selectedToken;
 
     return (
         <>
@@ -27,11 +29,11 @@ const PaymentMain: FC<PaymentMainProps> = ({ handleOpenModal }) => {
                         </div>
                         <div>
                             <div>Cost Factor</div>
-                            <div>100</div>
+                            <div>{selectedToken.price}</div>
                         </div>
                         <div>
                             <div>Total Project Cost</div>
-                            <div>1,000.00</div>
+                            <div>{selectedToken.price * walletState.count}</div>
                         </div>
                     </div>
                 </div>
@@ -44,22 +46,22 @@ const PaymentMain: FC<PaymentMainProps> = ({ handleOpenModal }) => {
                                 fontSize: "0.8em",
                             }}
                         >
-                            {" "}
-                            (this will be what is in the wallets)
+                            {/* {" "}
+                            (this will be what is in the wallets) */}
                         </span>
                     </div>
                     <div className="details">
                         <div>
                             <div>Token Name</div>
-                            <div>ICHTSTDA560</div>
+                            <div>{selectedToken.label}</div>
                         </div>
                         <div>
                             <div>Amount to Transfer</div>
-                            <div>100 SOL</div>
+                            <div>{selectedToken.price} SOL</div>
                         </div>
                         <div>
-                            <div>Data Account</div>
-                            <div>--</div>
+                            <div>Pages</div>
+                            <div>{selectedToken.pages}</div>
                         </div>
                         <div>
                             <div>Information 1</div>

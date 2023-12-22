@@ -1,7 +1,9 @@
 import axios, { AxiosResponse } from "axios";
+// const apiUrl =
+//     process.env.REACT_APP_LOCAL_SERVER_URL || "http://localhost:8080";
 const apiUrl =
-    process.env.REACT_APP_LOCAL_SERVER_URL || "http://localhost:8080";
-// const apiUrl = process.env.REACT_APP_SERVER_URL;
+    process.env.REACT_APP_SERVER_URL ||
+    "https://smart-supply-backend.onrender.com";
 
 export const importWallet = async (
     mnemonic: string
